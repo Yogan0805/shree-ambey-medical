@@ -1,52 +1,82 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import PrescriptionUpload from "../components/PrescriptionUpload";
+import MedicineSearch from "../components/MedicineSearch";
 
 export default function Hero() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
-    <section className="bg-emerald-50">
-      <div className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <section className="bg-green-50 py-16 px-6">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         
         {/* LEFT CONTENT */}
-        <div className="text-center md:text-left">
-          <span className="inline-block bg-emerald-100 text-emerald-700 text-sm px-4 py-1 rounded-full mb-4">
+        <div>
+          <p className="text-green-600 font-medium mb-2">
             Serving Dharna Kalan & Nearby Areas
-          </span>
+          </p>
 
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mt-4">
+          <h1 className="text-4xl font-bold mb-4">
             Your Medicine,
-            <br />
-            <span className="text-emerald-700">Delivered with Care</span>
+            <span className="text-green-600"> Delivered with Care</span>
           </h1>
 
-          <p className="text-gray-600 mt-4 text-base md:text-lg">
+          <p className="text-gray-600 mb-6">
             Upload your prescription and get instant updates on medicine
             availability. Trusted medical store serving since 2000.
           </p>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button className="bg-emerald-700 text-white px-6 py-3 rounded-full hover:bg-emerald-800 transition">
+          <div className="flex gap-4">
+            <button
+              onClick={() => setShowForm(true)}
+              className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700"
+            >
               Upload Prescription
             </button>
 
-            <button className="border border-emerald-700 text-emerald-700 px-6 py-3 rounded-full hover:bg-emerald-100 transition">
+            <button className="border border-green-600 text-green-600 px-6 py-3 rounded-lg">
               Contact Us
             </button>
           </div>
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="flex justify-center">
-          <div className="bg-white rounded-2xl shadow-lg p-4 w-full max-w-md">
-            <Image
-              src="/hero.jpg"
-              alt="Medical Store"
-              width={500}
-              height={350}
-              className="rounded-xl w-full h-auto"
-              priority
-            />
-          </div>
+        <div>
+          <img
+            src="/hero.jpg"
+            alt="Medical"
+            className="rounded-lg shadow"
+          />
         </div>
       </div>
+
+      {/* POPUP MODAL */}
+{showForm && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+    <div className="bg-white rounded-lg p-6 w-[500px] relative shadow-lg">
+
+      {/* Close button */}
+      <button
+        onClick={() => setShowForm(false)}
+        className="absolute top-3 right-4 text-xl font-bold"
+      >
+        ✕
+      </button>
+
+      {/* Upload form */}
+      <PrescriptionUpload />
+
+      {/* Medicine Search under it */}
+      <div className="mt-6">
+        <MedicineSearch />
+      </div>
+
+    </div>
+
+  </div>
+)}
     </section>
   );
 }
