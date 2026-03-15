@@ -45,7 +45,7 @@ export default function SignupPage() {
 
         <p className="text-sm text-center text-gray-600 mt-6">
           Already have an account?{" "}
-          <a href="/login" className="text-emerald-700 font-medium">
+          <a href="app/yogan.js" className="text-emerald-700 font-medium">
             Login
           </a>
         </p>
